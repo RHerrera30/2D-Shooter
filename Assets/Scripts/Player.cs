@@ -5,15 +5,16 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-  Animator playerAnimator;
+  // Animator playerAnimator;
   [FormerlySerializedAs("bullet")] public GameObject bulletPrefab;
   
-  public Transform shottingOffset;
-
+  public Transform shootingOffset;
+  public float speed = 8f;
+  public float bound = 7.5f;
   void Start()
   {
     Enemy.OnEnemyDied += EnemyOnOnEnemyDied;
-    playerAnimator = GetComponent<Animator>();
+    // playerAnimator = GetComponent<Animator>();
   }
 
   void OnDestroy()
@@ -29,14 +30,24 @@ public class Player : MonoBehaviour
   // Update is called once per frame
     void Update()
     {
+      //Movement
+      float moveInput = Input.GetAxis("Horizontal");
+      Vector2 newPosition = transform.position + Vector3.right * (moveInput * speed * Time.deltaTime);
+      newPosition.x = Mathf.Clamp(newPosition.x, -bound, bound);
+      
+      transform.position = newPosition;
+      
+      //Shoot
       if (Input.GetKeyDown(KeyCode.Space))
       {
-        playerAnimator.SetTrigger("Shoot Trigger");
-        GameObject shot = Instantiate(bulletPrefab, shottingOffset.position, Quaternion.identity);
-        Debug.Log("Bang!");
-
+        // playerAnimator.SetTrigger("Shoot Trigger");
+        Shoot();
         //Destroy(shot, 3f);
-
+      }
+      void Shoot()
+      {
+        GameObject shot = Instantiate(bulletPrefab, shootingOffset.position, Quaternion.identity);
+        Debug.Log("Bang!");
       }
     }
 }

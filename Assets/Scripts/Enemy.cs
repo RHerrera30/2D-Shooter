@@ -14,5 +14,6 @@ public class Enemy : MonoBehaviour
       Destroy(collision.gameObject);
       
       OnEnemyDied?.Invoke(3);
+      Destroy(gameObject);
     }
 }
