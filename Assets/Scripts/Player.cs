@@ -50,4 +50,11 @@ public class Player : MonoBehaviour
         Debug.Log("Bang!");
       }
     }
+    
+    void OnCollisionEnter2D(Collision2D collision)
+    { 
+      Debug.Log("Player Ouch!");
+      Destroy(collision.gameObject);
+      Destroy(gameObject);
+    }
 }
