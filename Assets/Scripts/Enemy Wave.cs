@@ -52,15 +52,15 @@ public class EnemyWave : MonoBehaviour
         transform.position += Vector3.down * downwardMovement;
     }
     
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-    //     if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Dome"))
-    //     {
-    //         stopMovement = true;
-    //         Debug.Log("Enemy Wave Stopped!"); // Debug message
-    //     }
-    //     
-    // }
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Dome"))
+        {
+            stopMovement = true;
+            Debug.Log("Enemy Wave Stopped!"); // Debug message
+        }
+        
+    }
     public void StopMovement()
     {
         stopMovement = true;

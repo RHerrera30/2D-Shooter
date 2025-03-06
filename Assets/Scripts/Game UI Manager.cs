@@ -6,6 +6,7 @@ public class GameUIManager : MonoBehaviour
     public GameObject startCanvas;
     public GameObject gameOverCanvas;
     private bool gameStarted = false;
+    private bool gameOver = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,9 +18,15 @@ public class GameUIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameStarted && Input.GetKeyDown(KeyCode.Space))
+        if (!gameStarted && Input.GetKeyDown(KeyCode.F))
         {
             StartGame();
+        }
+        
+        if (gameOver && Input.GetKeyDown(KeyCode.F))
+        { 
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart level
+            Time.timeScale = 1;
         }
     }
 
@@ -28,20 +35,20 @@ public class GameUIManager : MonoBehaviour
         startCanvas.SetActive(false);
         gameStarted = true;
         Time.timeScale = 1;
-        //Need to call endgame when player dies
     }
 
     public void EndGame()
     {
-        gameOverCanvas.SetActive(true);
-        //Need to call restart
+        startCanvas.SetActive(true);
+        gameOver = true;
         Time.timeScale = 0;
+        //Need to call restart
+        
     }
 
     //Not working
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // Restart level
-        Time.timeScale = 1;
-    }
+    // public void RestartGame()
+    // {
+    //     
+    // }
 }

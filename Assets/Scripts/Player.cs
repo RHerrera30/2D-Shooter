@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
   public Transform shootingOffset;
   public float speed = 8f;
   public float bound = 7.5f;
+  public GameUIManager gm;
   void Start()
   {
     Enemy.OnEnemyDied += EnemyOnOnEnemyDied;
@@ -54,6 +55,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     { 
       Debug.Log("Player Ouch!");
+      gm.EndGame();
       Destroy(collision.gameObject);
       Destroy(gameObject);
     }
