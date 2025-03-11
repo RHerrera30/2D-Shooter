@@ -8,7 +8,7 @@ public class ButtonPress : MonoBehaviour
 
     void Awake()
     {
-        GameObject.DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
     
     public void LoadGameScene()
@@ -17,7 +17,7 @@ public class ButtonPress : MonoBehaviour
 
         IEnumerator _LoadGameScene()
         {
-           SceneManager.LoadScene("DemoScene");
+           // SceneManager.LoadScene("DemoScene");
            AsyncOperation loadOp = SceneManager.LoadSceneAsync("DemoScene");
            while (!loadOp!.isDone) yield return null;
            

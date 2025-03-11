@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
@@ -55,8 +56,9 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     { 
       Debug.Log("Player Ouch!");
-      gm.EndGame();
-      Destroy(collision.gameObject);
-      Destroy(gameObject);
+      // gm.EndGame();
+      SceneManager.LoadScene("CreditsScene");
+      // Destroy(collision.gameObject);
+      // Destroy(gameObject);
     }
 }
