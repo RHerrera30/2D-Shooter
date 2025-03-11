@@ -56,9 +56,15 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     { 
       Debug.Log("Player Ouch!");
+      playerAnimator.SetBool("Player Dead", true);
       // gm.EndGame();
-      SceneManager.LoadScene("CreditsScene");
+      Invoke(nameof(_loadCredits), 3);
       // Destroy(collision.gameObject);
       // Destroy(gameObject);
+    }
+
+    void _loadCredits()
+    {
+      SceneManager.LoadScene("CreditsScene");
     }
 }
