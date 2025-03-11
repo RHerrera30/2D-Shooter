@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-  // Animator playerAnimator;
+  Animator playerAnimator;
   [FormerlySerializedAs("bullet")] public GameObject bulletPrefab;
   
   public Transform shootingOffset;
@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
   void Start()
   {
     Enemy.OnEnemyDied += EnemyOnOnEnemyDied;
-    // playerAnimator = GetComponent<Animator>();
+    playerAnimator = GetComponent<Animator>();
   }
 
   void OnDestroy()
@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
       //Shoot
       if (Input.GetKeyDown(KeyCode.Space))
       {
-        // playerAnimator.SetTrigger("Shoot Trigger");
+        playerAnimator.SetTrigger("Shoot Trigger");
         Shoot();
         //Destroy(shot, 3f);
       }
