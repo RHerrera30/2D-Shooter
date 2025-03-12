@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     { 
+        enemyAnimator.SetTrigger("Die");
         Debug.Log("Ouch!");
         Destroy(collision.gameObject);
 
@@ -42,7 +43,7 @@ public class Enemy : MonoBehaviour
         }
 
         OnEnemyDied?.Invoke(1);
-        Destroy(gameObject);
+        Invoke(nameof(destroyEnemy), 1);
     }
     void Shoot()
     {
@@ -59,4 +60,9 @@ public class Enemy : MonoBehaviour
     //         wave.StopMovement();
     //     }
     // }
+
+    void destroyEnemy()
+    {
+        Destroy(gameObject);
+    }
 }
