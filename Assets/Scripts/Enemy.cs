@@ -12,6 +12,10 @@ public class Enemy : MonoBehaviour
     public int enemyType;
     public ScoreKeeper scoreKeeper;
     private Animator enemyAnimator;
+
+    public AudioSource source;
+    public AudioClip shootClip;
+    public AudioClip dieClip;
     
     // Start is called before the first frame update
     void Start()
@@ -22,6 +26,7 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision)
     { 
         enemyAnimator.SetTrigger("Die");
+        source.PlayOneShot(dieClip);
         Debug.Log("Ouch!");
         Destroy(collision.gameObject);
 
@@ -48,6 +53,7 @@ public class Enemy : MonoBehaviour
     void Shoot()
     {
         GameObject shot = Instantiate(bulletPrefab, shootingOffset.position, Quaternion.identity);
+        source.PlayOneShot(shootClip);
         enemyAnimator.SetTrigger("Enemy Shoot");
         Debug.Log("Enemy Bang!");
         Invoke("Shoot", Random.Range(minFireRate, maxFireRate));

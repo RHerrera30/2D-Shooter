@@ -22,11 +22,4 @@ public class Bullet : MonoBehaviour
       myRigidbody2D.linearVelocity = Vector2.up * speed; 
       // Debug.Log("Wwweeeeee");
     }
-
-    // void OnCollisionEnter2D(Collision2D other)
-    // {
-    //   Debug.Log($"Collision with {other.gameObject.name}");
-    //         Destroy(other.gameObject);
-    //         Destroy(gameObject);
-    // }
 }
